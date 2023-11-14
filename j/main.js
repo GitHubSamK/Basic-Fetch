@@ -10,7 +10,7 @@ fetch("houses.json")
     .then((response) => response.json())
     .then((data) => {
         //create a temp holder to append all the html generated inside the forEach iterator
-        let html = "";
+        let html = "<d1>";
 
         //the argument "house" passed to the arrow function
         //holds each item in the array in turn.
@@ -19,10 +19,12 @@ fetch("houses.json")
 
             // generate the html snippet for one array item
             //to be added to the "html" temp holder.
-            let objInfo = `<p class="house">${house.name}</p>
-        <p class="folks">${family}</p>`;
+            let objInfo = `<dt class="house">${house.name}</dt>
+        <dd class="folks">${family}</dd>`;
             html += objInfo;
         });
+
+        html +="</d1>";
 
         //make a reference to the html container where
         //the info will be displayed.
