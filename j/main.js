@@ -14,24 +14,63 @@ fetch("houses.json")
 
         //the argument "house" passed to the arrow function
         //holds each item in the array in turn.
+        html = `<dl class="house-list">`;
+
         data.forEach((house) => {
-            let family = house.members.join(" | ");
+            //let family = house.members.join(" | ");
 
             // generate the html snippet for one array item
             //to be added to the "html" temp holder.
-            let objInfo = `<d1 class="house-list">
-            <dt class="house-name">${house.name}</dt>
-        <dd class="house-mambers">${family}</dd>
-        </d1>`;
-            html += objInfo;
+           
+            html += `<dt class="house-name">${house.name}</dt>`; 
+            house.members.forEach((name) => {
+            html += `<dd class="house-members">${name}</dd>`;
+            });
+        
+            
+        
         });
 
+        html += `</dl>`;
        
 
         //make a reference to the html container where
         //the info will be displayed.
-        const container = document.querySelector("#container");
-        container.innerHTML = html;
+        var container = document.getElementById("container");
+        container.innerHTML += html;
     })
     .catch((err) => console.log("Oops!", err));
     //this only runs if there is an error during the above process
+
+    // part two
+
+
+
+
+     function color(){
+        fetch("https://www.colr.org/json/color/random")
+        .then((response) => response.json())
+        .then((data) => {
+
+            //let hex = data.colors[0].hex;
+           let hex = data.colors[0].hex;
+
+            
+           
+
+            hex = "#" + hex;
+
+
+            document.body.style.backgroundColor = hex;
+        })
+
+        .catch((error) => {
+            console.log(error);
+
+        });
+
+    }
+
+    window.onload = color; 
+
+  
